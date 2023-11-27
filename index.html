@@ -128,12 +128,13 @@
                 <p>LinkedIn: linkedin.com/in/tyler-ralston-1a178a175</p>
             </div>
             <div class="contact-right">
-                <form>
+                <form name="submit-to-google-sheet">
                     <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
                     <textarea name="Message" rows="6" placeholder="Message"></textarea>
                     <button type="submit" class="btn btn2">Submit</button>
                 </form>
+                <span id="msg"></span>
             </div>
         </section>
     </main>
@@ -159,7 +160,24 @@ function opentab(tabname){
 }
 
 </script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyCfLQBcqxZWxknRL6_QXWXnZC9z_iKXMShf6zRALrnMlx5HOOAJ-CpDcCB0iapK792/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
 
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Thank you for your time!"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 
 </body>
 </html>

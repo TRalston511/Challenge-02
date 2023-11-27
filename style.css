@@ -4,6 +4,9 @@
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
   }
+  html{
+    scroll-behavior: smooth;
+  }
   body{
     background: black;
     color: #fff;
@@ -262,4 +265,3 @@ form .btn2{
     margin-top: 20px;
 }
 
-/*-------------------CSS for small screens----------*/
